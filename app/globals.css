@@ -2,25 +2,25 @@
 @config "../tailwind.config.js";
 
 :root {
-  --color-background-primary: #ffffff;
-  --color-background-secondary: #eeeeee;
-  --color-background-tertiary: #666666;
-  --color-background-alternative: #000000;
-  --color-text-primary: #000000;
-  --color-text-secondary: #666666;
+  --color-background-primary: #f3f0e7;
+  --color-background-secondary: #e6e0d2;
+  --color-background-tertiary: #778315;
+  --color-background-alternative: #151711;
+  --color-text-primary: #202219;
+  --color-text-secondary: #666454;
   --color-text-alternative: #ffffff;
   --color-border-primary: #000000;
   --color-border-secondary: #aaaaaa;
   --color-border-alternative: #ffffff;
-  --color-accent: #000000;
-  --color-accent-contrast: #ffffff;
+  --color-accent: #778315;
+  --color-accent-contrast: #f8f4e9;
   --scheme-background: var(--color-background-primary);
   --scheme-foreground: var(--color-background-primary);
   --scheme-text: var(--color-text-primary);
   --scheme-border: var(--color-border-primary);
   --scheme-button-text: var(--color-accent-contrast);
-  --font-sans: Arial, sans-serif;
-  --font-display: var(--font-sans);
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
   --space-section-sm: 4rem;
   --space-section-md: 6rem;
   --space-section-lg: 7rem;
@@ -42,6 +42,7 @@ body {
   background: var(--scheme-background);
   color: var(--scheme-text);
   font-family: var(--font-sans);
+  line-height: 1.5;
 }
 
 h1,
@@ -51,8 +52,84 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
+  font-weight: 400;
 }
 
 img {
   display: block;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.eyebrow {
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  position: relative;
+  z-index: 50;
+  min-height: 86px;
+  background: #151711;
+  color: #e7dfcd;
+}
+
+.brand-mark img { width: 260px; height: auto; }
+.nav-links { display: flex; gap: 1.75rem; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+.nav-links a, .site-footer a { transition: color .2s ease; }
+.nav-links a:hover, .site-footer a:hover { color: #b3bf37; }
+.nav-cta { border-color: #9aa527 !important; background: #9aa527 !important; color: #151711 !important; font-weight: 700; }
+.nav-toggle span { margin: 3px 0; height: 1px; width: 24px; background: #e7dfcd; }
+
+.hero113 h1 { max-width: 760px; font-size: clamp(3.25rem, 6.3vw, 7rem); line-height: .96; letter-spacing: -.045em; }
+.hero-shade { background: linear-gradient(90deg, rgba(8,10,7,.76), rgba(8,10,7,.14) 64%, rgba(8,10,7,.36)); }
+.hero-description { max-width: 25rem; border-left: 1px solid rgba(255,255,255,.7); padding-left: 1.5rem; }
+
+.proof-section { min-height: 680px; display: flex; align-items: center; }
+.proof-section h2 { max-width: 620px; }
+.proof-stat p { color: #f4f0e6; font-family: var(--font-display); font-size: clamp(3.2rem, 5vw, 5.5rem); line-height: 1; }
+.proof-stat h3 { margin-top: .75rem; color: #f4f0e6; font-family: var(--font-sans); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+
+.portfolio-section { background: #f3f0e7; }
+.portfolio-section h2 { font-size: clamp(2.8rem, 4.5vw, 5rem); }
+.project-image img { transition: transform .6s ease; }
+.project-image:hover img { transform: scale(1.025); }
+.portfolio-grid article:nth-child(1) .project-image img { aspect-ratio: 4 / 5; }
+.portfolio-grid article:nth-child(2) .project-image img { aspect-ratio: 4 / 3; }
+.portfolio-grid article:nth-child(3) .project-image img { aspect-ratio: 4 / 5; }
+.portfolio-grid .project-image img { height: auto; min-height: 26rem; }
+.project-link { color: #66720e; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+
+.testimonial-section { background: #dcd5c6; }
+.testimonial-image { filter: saturate(.8); }
+.testimonial-logo { width: 170px; filter: brightness(.35); }
+.testimonial-quote { font-size: clamp(2rem, 3.15vw, 3.6rem); line-height: 1.13; letter-spacing: -.025em; }
+
+.contact-section { background: #eee9dd; }
+.contact-section h2 { max-width: 640px; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1; }
+.contact-image { object-position: 50% 54%; }
+.site-footer { background: #151711; color: #d5cebd; }
+.footer-logo { width: 285px; }
+
+@media (max-width: 991px) {
+  .site-nav { min-height: 74px; }
+  .brand-mark img { width: 205px; }
+  .nav-links { position: fixed; inset: 0 auto 0 0; z-index: 60; width: min(82vw, 380px); flex-direction: column; padding: 7rem 2rem; background: #151711; font-size: 1rem; }
+  .nav-cta { font-size: 0; padding-inline: 1rem !important; }
+  .nav-cta::after { content: "Contact"; font-size: .75rem; }
+  .hero113 h1 { font-size: clamp(3rem, 12vw, 5.5rem); }
+}
+
+@media (max-width: 767px) {
+  .hero113 .container { min-height: calc(100svh - 74px); }
+  .hero113 .grid { align-content: end; }
+  .hero-description { margin-top: 1rem; }
+  .proof-section { min-height: auto; }
+  .portfolio-grid .project-image img { min-height: 0; aspect-ratio: 4 / 3 !important; }
+  .contact-image { height: 20rem; }
+  .testimonial-logo { display: none; }
 }

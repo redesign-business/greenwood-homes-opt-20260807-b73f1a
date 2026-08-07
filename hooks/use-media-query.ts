@@ -3,16 +3,16 @@ import { useEffect, useLayoutEffect, useState } from "react";
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const IS_SERVER = typeof window === "undefined";
 
-export function useMediaQuery(query: string, defaultValue = false): boolean {
-  const getMatches = () => (IS_SERVER ? defaultValue : window.matchMedia(query).matches);
-  const [matches, setMatches] = useState(getMatches);
+export function useMediaQuery(query: string): boolean {
+  const getMatches = () => (IS_SERVER ? false : window.matchMedia(query).matches);
+  const [matches, setMatches] = useState(false);
 
   useIsomorphicLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query);
-    const handleChange = () => setMatches(matchMedia.matches);
-    handleChange();
-    matchMedia.addEventListener("change", handleChange);
-    return () => matchMedia.removeEventListener("change", handleChange);
+    const media = window.matchMedia(query);
+    const update = () => setMatches(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
   }, [query]);
 
   return matches;
